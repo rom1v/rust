@@ -57,7 +57,7 @@ matrix:
         NO_DEBUG_ASSERTIONS=1
       os: osx
       osx_image: xcode9.3-moar
-      if: branch = auto
+      if: branch = more-osx-cores
 
     - env: >
         RUST_CHECK_TARGET=check
@@ -71,7 +71,7 @@ matrix:
         NO_DEBUG_ASSERTIONS=1
       os: osx
       osx_image: xcode9.3-moar
-      if: branch = auto
+      if: branch = more-osx-cores
 
     # OSX builders producing releases. These do not run the full test suite and
     # just produce a bunch of artifacts.
