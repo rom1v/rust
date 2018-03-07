@@ -1,4 +1,4 @@
-// Copyright 2017 The Rust Project Developers. See the COPYRIGHT
+// Copyright 2018 The Rust Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution and at
 // http://rust-lang.org/COPYRIGHT.
 //
@@ -8,11 +8,16 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-#![feature(termination_trait)]
-#![feature(process_exitcode_placeholder)]
+// ignore-cloudabi no processes
+// ignore-emscripten no processes
 
-use std::process::ExitCode;
+use std::io::ErrorKind;
+use std::process::Command;
 
-fn main() -> ExitCode {
-    ExitCode::SUCCESS
+fn main() {
+    assert_eq!(Command::new("nonexistent")
+                   .spawn()
+                   .unwrap_err()
+                   .kind(),
+               ErrorKind::NotFound);
 }
